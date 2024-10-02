@@ -9,3 +9,6 @@
   latitude: number;
   longitude: number;
 }
+
+
+export type LocationType = 'search' | 'button'

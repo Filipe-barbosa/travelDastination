@@ -1,10 +1,13 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { Location } from '@/Interfaces/location';
+import { Location, LocationType } from '@/Interfaces/location';
+import { calculateClosestLocations } from '@/helpers/calculateClosesLocation';
+import options from '../../src/Components/SearchContainer/options.json';
 
-// Define the shape of the context
 interface LocationContextType {
   selectedOption: Location | null;
-  setSelectedOption: React.Dispatch<React.SetStateAction<Location | null>>;
+  buttonOption: Location | null;
+  closestLocations: (Location & { distance: number })[] | null;
+  handleSelectedOptionChange: (location: Location, type: LocationType) => void;
 }
 
 const LocationContext = createContext<LocationContextType | undefined>(
@@ -15,9 +18,31 @@ export const LocationProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [selectedOption, setSelectedOption] = useState<Location | null>(null);
+  const [buttonOption, setButtonOption] = useState<Location | null>(null);
+  const [closestLocations, setClosestLocations] = useState<
+    (Location & { distance: number })[] | null
+  >(null);
+
+  const handleSelectedOptionChange = (
+    location: Location,
+    type: LocationType,
+  ) => {
+    type === 'search' ? setSelectedOption(location) : setButtonOption(location);
+
+    const allLocations: Location[] = options;
+    const closest = calculateClosestLocations(location, allLocations, 4);
+    setClosestLocations(closest);
+  };
 
   return (
-    <LocationContext.Provider value={{ selectedOption, setSelectedOption }}>
+    <LocationContext.Provider
+      value={{
+        selectedOption,
+        handleSelectedOptionChange,
+        buttonOption,
+        closestLocations,
+      }}
+    >
       {children}
     </LocationContext.Provider>
   );

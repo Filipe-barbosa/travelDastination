@@ -11,6 +11,6 @@ export const theme = {
   fonts: {
     main: 'Arial, sans-serif',
   },
-  spacing: (factor: number) => `${0.25 * factor}rem`, // exemplo de função para espaçamento
+  spacing: (factor: number) => `${0.25 * factor}rem`,
 };
 

@@ -4,7 +4,7 @@ import { Autocomplete  as MuiAutoComplete} from "@mui/material";
 
 export const Container = styled.div`
 display: flex;
-width: 50%;
+width: 92%;
 padding: 3rem;
 background-color: #dadad4;
 flex-direction: column;

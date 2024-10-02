@@ -6,13 +6,10 @@ import options from './options.json';
 import { useLocationContext } from '@/hooks/useLocationContext';
 
 const SearchAutocomplete = () => {
-  const { selectedOption, setSelectedOption } = useLocationContext();
+  const { selectedOption, handleSelectedOptionChange } = useLocationContext();
   const loading = true;
-  const handleOptionChange = (
-    event: SyntheticEvent,
-    newValue: Location | null,
-  ) => {
-    setSelectedOption(newValue);
+  const handleOptionChange = (event: SyntheticEvent, newValue: Location) => {
+    handleSelectedOptionChange(newValue, 'search');
   };
 
   return (

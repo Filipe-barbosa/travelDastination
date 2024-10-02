@@ -4,7 +4,7 @@ import styled from "styled-components";
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
   gap: 1rem;
   justify-content: flex-start;
   padding: 1rem;
