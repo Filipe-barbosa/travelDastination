@@ -6,10 +6,10 @@ export const Container = styled.div`
 display: flex;
 width: 50%;
 padding: 3rem;
-background-color: #dcdcdf;
+background-color: #dadad4;
 flex-direction: column;
 gap: 1rem;
-border-radius: 24px;
+border-radius: 2rem;
 `
 
  export const Autocomplete = styled(MuiAutoComplete)`

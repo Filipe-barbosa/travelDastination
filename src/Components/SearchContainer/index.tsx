@@ -1,11 +1,12 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent } from 'react';
 import { Container, Autocomplete } from './styles';
 import { TextField, Box } from '@mui/material';
 import { Location } from '@/Interfaces/location';
 import options from './options.json';
+import { useLocationContext } from '@/hooks/useLocationContext';
 
 const SearchAutocomplete = () => {
-  const [selectedOption, setSelectedOption] = useState<Location | null>(null);
+  const { selectedOption, setSelectedOption } = useLocationContext();
   const loading = true;
   const handleOptionChange = (
     event: SyntheticEvent,
@@ -18,7 +19,7 @@ const SearchAutocomplete = () => {
     <Container>
       Location
       <Autocomplete
-        options={options}
+        options={options as Location[]}
         autoHighlight
         loading={loading}
         value={selectedOption}

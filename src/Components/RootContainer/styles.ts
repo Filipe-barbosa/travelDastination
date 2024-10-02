@@ -14,8 +14,10 @@ export const InformationContainer = styled.div`
 display: flex;
 width: 50%;
 height: 100%;
+flex-direction: column;
+padding: 16px;
 align-items: center;
-justify-content: center;
+justify-content: space-between;
 background-color: #fafaf3 ;
 `
 
