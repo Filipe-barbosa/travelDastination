@@ -1,11 +1,10 @@
+import { Button } from '@mui/material';
 import './App.css';
+import RootContainer from './Components/RootContainer';
 
 function App() {
-  return (
-    <>
-      <h1> Travel destination</h1>
-    </>
-  );
+  return <RootContainer/>
+
 }
 
 export default App;
