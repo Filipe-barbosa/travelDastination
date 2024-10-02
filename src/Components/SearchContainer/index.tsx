@@ -2,13 +2,14 @@
 import { Container, Autocomplete } from './styles';
 import { TextField, Box } from '@mui/material';
 import { Location } from '@/Interfaces/location';
-import options from './options.json';
+
 import { useLocationContext } from '@/hooks/useLocationContext';
 
 const SearchAutocomplete = () => {
-  const { selectedOption, handleSelectedOptionChange } = useLocationContext();
+  const { selectedOption, handleSelectedOptionChange, allOptions } =
+    useLocationContext();
   const loading = true;
-  const handleOptionChange = (_, newValue: Location) => {
+  const handleOptionChange = (event: SyntheticEvent, newValue: Location) => {
     handleSelectedOptionChange(newValue, 'search');
   };
 
@@ -16,7 +17,7 @@ const SearchAutocomplete = () => {
     <Container>
       Location
       <Autocomplete
-        options={options as Location[]}
+        options={allOptions as Location[]}
         autoHighlight
         loading={loading}
         value={selectedOption}

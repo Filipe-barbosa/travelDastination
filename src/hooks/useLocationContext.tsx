@@ -6,6 +6,7 @@ import options from '../../src/Components/SearchContainer/options.json';
 interface LocationContextType {
   selectedOption: Location | null;
   buttonOption: Location | null;
+  allOptions: Location[];
   closestLocations: (Location & { distance: number })[] | null;
   handleSelectedOptionChange: (location: Location, type: LocationType) => void;
 }
@@ -18,6 +19,7 @@ export const LocationProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [selectedOption, setSelectedOption] = useState<Location | null>(null);
+  const allOptions: Location[] = options;
   const [buttonOption, setButtonOption] = useState<Location | null>(null);
   const [closestLocations, setClosestLocations] = useState<
     (Location & { distance: number })[] | null
@@ -27,7 +29,9 @@ export const LocationProvider: React.FC<{ children: ReactNode }> = ({
     location: Location,
     type: LocationType,
   ) => {
-    type === 'search' ? setSelectedOption(location) : setButtonOption(location);
+    type === 'search'
+      ? (setSelectedOption(location), setButtonOption(null))
+      : setButtonOption(location);
 
     const allLocations: Location[] = options;
     const closest = calculateClosestLocations(location, allLocations, 4);
@@ -38,6 +42,7 @@ export const LocationProvider: React.FC<{ children: ReactNode }> = ({
     <LocationContext.Provider
       value={{
         selectedOption,
+        allOptions,
         handleSelectedOptionChange,
         buttonOption,
         closestLocations,

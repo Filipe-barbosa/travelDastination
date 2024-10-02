@@ -19,7 +19,7 @@ const haversineDistance = (coord1: Location, coord2: Location) => {
 
   return R * c;
 };
- 
+
  export const calculateClosestLocations = (
   selectedLocation: Location,
   locations: Location[],
